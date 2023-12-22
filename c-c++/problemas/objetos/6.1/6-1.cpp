@@ -32,7 +32,6 @@ public:
     void setTransporte(float);
     void setVivienda(float);
     //
-    Factura nuevaFactura();
     ~Factura();
 };
 
@@ -68,10 +67,10 @@ void Factura::setVivienda(float nuevoPrecio){
 
 class Cuenta{
 private:
-    Divisa moneda;
+    //Divisa moneda;
     Lista<Factura*>* facturas;
 public:
-    Cuenta(Divisa moneda, Lista<Factura*>* facturas);
+    Cuenta(/*Divisa moneda,*/ Lista<Factura*>* facturas);
     void agregarFactura();
     void agregarFactura(Factura*);
     void agregarFactura(Factura*, unsigned int);
@@ -80,8 +79,8 @@ public:
     float getTotalAlimentos(Divisa);
 };
 
-Cuenta::Cuenta(Divisa moneda, Lista<Factura*>* facturas){
-    this->moneda = moneda;
+Cuenta::Cuenta(/*Divisa moneda,*/ Lista<Factura*>* facturas){
+    //this->moneda = moneda;
     this->facturas = NULL;
 }
 
@@ -120,5 +119,15 @@ void Cuenta::removerFactura(unsigned int dia){
 }
 
 int main(){
-    
+    Lista<Factura*>* facturas = new Lista<Factura*>();
+    float nuevaComida, nuevoTransporte, nuevaVivienda;
+
+    std::cout << "Ingrese los detalles de la factura de la siguiente forma: $comida, $transporte, $vivienda" << std::endl;
+    std::cin >> nuevaComida >> nuevoTransporte >> nuevaVivienda;
+    Factura* nueva = new Factura(nuevaComida, nuevoTransporte, nuevaVivienda);
+    facturas->add(nueva);
+
+    std::cout << facturas->getSize() << std::endl;
+
+    return 0;
 }
