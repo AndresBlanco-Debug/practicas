@@ -29,7 +29,7 @@ template<class T> Nodo<T>::Nodo(T valor){
 }
 
 template<class T> bool Nodo<T>::haySiguiente(){
-    proximo = false;
+    bool proximo = false;
     if(this->siguiente != NULL){
         proximo = true;
     }
@@ -44,16 +44,16 @@ template<class T> bool Nodo<T>::hayAnterior(){
     return anterior;
 }
 
-template<class T> Nodo<T>*::getSiguiente(){
+template<class T> Nodo<T>* Nodo<T>::getSiguiente(){
     if(this->haySiguiente()){
         return this->siguiente;
     }
     return NULL;
 }
 
-template<class T> Nodo<T>*::getAnterior(){
+template<class T> Nodo<T>* Nodo<T>::getAnterior(){
     if(this->hayAnterior()){
-        return this->anterior;
+        return (this->anterior);
     }
     return NULL;
 }

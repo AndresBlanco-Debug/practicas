@@ -9,7 +9,7 @@ private:
     unsigned int tamano;
     Nodo<T>* primero;
     Nodo<T>* cursor;
-    Nodo<T>* getNodo(unsigned int) const;
+    Nodo<T>* getNodo(unsigned int)const;
 public:
     Lista();
     Lista(Lista<T> &);
@@ -17,14 +17,13 @@ public:
     unsigned int getSize() const;
     void add(T);
     void add(T , unsigned int);
-    void add(Lista<T>, &);
+    //void add(Lista<T>, &);
     T get(unsigned int);
     void asignar(T, unsigned int);
     void remover(unsigned int);
     void reiniciarCursor();
     bool avanzarCursor();
     T getCursor() const;
-    Nodo<T>* getNodo(unsigned int)const;
     void mostrarDescripcion();
     ~Lista();
 };
@@ -98,7 +97,7 @@ template<class T> void Lista<T>::remover(unsigned int pos){
         }else{
             Nodo<T>* nodoAnterior = this->getNodo(pos - 1);
             nodoRemovido = nodoAnterior->getSiguiente();
-            nodoAnterior->setSiguiente(nodoRemovido->getSiguiente())
+            nodoAnterior->setSiguiente(nodoRemovido->getSiguiente());
         }
         delete nodoRemovido;
         this->tamano--;

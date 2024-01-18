@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "./structs/Lista.h"
+#include "/home/jose/Desktop/code/practicas/c-c++/structs/Lista.h"
 
 /*Desarollar una aplicacion que permita a un usuario llevar informacion sobre los gastos del hogar que realiza.
 Debe perimir:
@@ -77,6 +77,7 @@ public:
     void removerFactura(Factura*);
     void removerFactura(unsigned int);
     float getTotalAlimentos(Divisa);
+    ~Cuenta();
 };
 
 Cuenta::Cuenta(/*Divisa moneda,*/ Lista<Factura*>* facturas){
@@ -100,7 +101,7 @@ void Cuenta::agregarFactura(Factura* nuevaFactura, unsigned int dia){
     this->facturas->add(nuevaFactura, dia);
 }
 
-void Cuenta::removerFactura(Factura* deadFactura){
+/*void Cuenta::removerFactura(Factura* deadFactura){
     //se trabaja en esta.
     unsigned int posicion = 1;
     while(this->facturas->avanzarCursor() != NULL){
@@ -116,7 +117,7 @@ void Cuenta::removerFactura(Factura* deadFactura){
 
 void Cuenta::removerFactura(unsigned int dia){
     this->facturas->remover(dia);
-}
+}*/
 
 int main(){
     Lista<Factura*>* facturas = new Lista<Factura*>();
@@ -128,6 +129,7 @@ int main(){
     facturas->add(nueva);
 
     std::cout << facturas->getSize() << std::endl;
+    std::cout << facturas->get(1) << std::endl;
 
     return 0;
 }

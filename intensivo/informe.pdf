@@ -1,0 +1,23 @@
+Informe del trabajo practico numero 1.
+tema principal del informe: libreria "<iostream>" de c++.
+subtemas a cubrir:
+1. En que ruta esta
+2. Que otros archivos estan ahi
+3. Que contiene (Observar especialmente cout y std. Que son y donde estan?).
+
+iostream es un componente de la biblioteca estandar (STL) del lenguaje c++ que es utilizado para operadores de entrada y salida,
+es un acronimo de Input/Output Stream. Se necesita porque el flujo de entrada y salida de datos no esta definido en la sintaxis de c++,
+y se provee mediante librerias.
+
+ejemplos serian: 
+a. cin: flujo de entrada
+b. cout: flujo de salida.
+c. cerr: flujo de error no almacenado
+d. clog flujo de error almacenado.
+
+Por regla general, un programa tiene utilidad pratica si:
+- acepta datos de entrada, para su procesamiento.
+- proporciona una salida de resultados, para ser reutilizados por el usuario u otro programa.
+
+Biblioteca estandar y el espacio de nombres (std).
+
