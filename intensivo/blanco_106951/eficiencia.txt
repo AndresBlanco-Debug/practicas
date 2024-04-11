@@ -1,0 +1,18 @@
+Divide y venceras:
+tecnica de disenos de algoritmos que consiste en resolver un problema a partir de una solucion
+de subproblemas del mismo tipo, pero de menor tamano. Si los subproblemas son relativamente grandes
+se aplica de nuevo la misma tecnica hasta alcanzar subproblemas suficientemente pequenos
+para ser solucionado directamente
+
+1. Division: Identificar los subproblemas del mismo tipo del problema original y organizarlos en diferentes grupos
+2. Solucion de subproblemas: Los subproblemas deben solucionarce de manera independiente
+3. Solucion del problema general: dadas las soluciones del subproblema, resolver el problema general.
+
+Ordenes de complejidad:
+1. Orden constante
+2. Orden logaritmico
+3. Orden lineal
+4. Orden cuadratico
+5. O(x^n) orden polinomial (n > 2)
+6. O(n^x) orden exponencial (n > 2)
+7. O(n!) Orden factorial

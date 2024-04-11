@@ -12,19 +12,31 @@ private:
     Nodo<T>* getNodo(unsigned int)const;
 public:
     Lista();
+    /*Post: Crea una lista vacia*/
     Lista(Lista<T> &);
+    /*Post: Se combinan dos listas*/
     bool vacia() const;
+    /*Post: booleano dependiendo si hay elementos*/
     unsigned int getSize() const;
+    /*Post: Regresa la cantidad de elementos de la lista*/
     void add(T);
+    /*Post: agrega el elemento en la ultima posicion de la lista*/
     void add(T , unsigned int);
-    //void add(Lista<T>, &);
+    /*Post: asigna el elemento en la posicion ingresada*/
+    void add(Lista<T> &);
+    /*Post: Agrega los elementos de la segunda lista al final de la primera*/
     T get(unsigned int);
+    /*Regresa el elemento en la posicion ingresada*/
     void asignar(T, unsigned int);
+    /*post: cambia el elemento a la posicion ingresada*/
     void remover(unsigned int);
+    /*Post: elimina el elemento en la posicion ingresada*/
     void reiniciarCursor();
+    /*Post: reinicia el cursor para una nueva iteracion*/
     bool avanzarCursor();
+    /*Post: avanza el cursor a la siguiente iteracion, el valor de retorno indica si hay elementos bajo el cursor*/
     T getCursor() const;
-    void mostrarDescripcion();
+    /*Post: regresa el elemento bajo el cursor*/
     ~Lista();
 };
 
@@ -68,6 +80,13 @@ template<class T> void Lista<T>::add(T elemento, unsigned int pos){
         }
         this->tamano++;
         this->reiniciarCursor();
+    }
+}
+
+template<class T> void Lista<T>::add(Lista<T> &otraLista){
+    otraLista.reiniciarCursor();
+    while(otraLista.avanzarCursor()){
+        this->add(otraLista.getCursor());
     }
 }
 
@@ -145,82 +164,6 @@ template<class T> Nodo<T>* Lista<T>::getNodo(unsigned int pos)const{
         nodoActual = nodoActual->getSiguiente();
     }
     return nodoActual;
-}
-
-/*Muestra lo que hace cada cosa*/
-
-template<class T> void Lista<T>::mostrarDescripcion(){
-    std::cout << "Se mostrara el metodo y la descripcion de lo que hace" << '\n';
-    std::cout << "Hay 13 metodos de la lista sin contar este." << '\n';
-
-    int opcion;
-    std::cout << "Seleccione un numero del 1 al 13 para mostrar la descripcion de los metodos." << '\n';
-    std::cin >> opcion;
-
-    if (std::cin.fail()) {
-        std::cout << "El dato ingresado no es un número entero." << std::endl;
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    } else {
-        switch (opcion)
-        {
-            case 1:
-                std::cout << "1. Lista() - Constructor por defecto que inicializa una lista vacía." << '\n';
-                break;
-
-            case 2:
-                std::cout << "2. Lista(Lista<T>&) - Constructor de copia que crea una nueva lista idéntica a otra." << '\n';
-                break;
-
-            case 3:
-                std::cout << "3. vacia() const - Verifica si la lista está vacía." << '\n';
-                break;
-
-            case 4:
-                std::cout << "4. getSize() const - Obtiene el tamaño de la lista." << '\n';
-                break;
-
-            case 5:
-                std::cout << "5. add(T) - Añade un elemento al final de la lista." << '\n';
-                break;
-
-            case 6:
-                std::cout << "6. add(T, unsigned int) - Añade un elemento en una posición específica de la lista." << '\n';
-                break;
-
-            case 7:
-                std::cout << "7. add(Lista<T>&) - Añade los elementos de otra lista al final de la lista actual." << '\n';
-                break;
-
-            case 8:
-                std::cout << "8. get(unsigned int) - Obtiene el elemento en la posición dada." << '\n';
-                break;
-
-            case 9:
-                std::cout << "9. asignar(T, unsigned int) - Cambia el elemento en la posición dada." << '\n';
-                break;
-
-            case 10:
-                std::cout << "10. remover(unsigned int) - Elimina el elemento en la posición dada." << '\n';
-                break;
-
-            case 11:
-                std::cout << "11. reiniciarCursor() - Reinicia el cursor para una nueva iteración." << '\n';
-                break;
-
-            case 12:
-                std::cout << "12. avanzarCursor() - Avanza el cursor que itera sobre la lista." << '\n';
-                break;
-
-            case 13:
-                std::cout << "13. getCursor() const - Obtiene el elemento apuntado por el cursor." << '\n';
-                break;
-
-            default:
-                std::cout << "Opción no válida." << '\n';
-                break;
-        }
-    }
 }
 
 
