@@ -1,71 +1,63 @@
-/*HAY QUE CREAR UN PROGRAMA QUE CALCULE TODOS LOS NUMEROS PRIMOS DEL 1 AL 10,000,000 EN UN TIEMPO RAZONABLE (NO MAYOR A 5 MINUTOS)*/
-/*Numero primo: Numeros que solamente son divisibles entre ellos y la unidad*/
-/*forma de calcular numeros primos: */
+/*Parte 1. Desarrollo.
+Hacer una aplicación en C++ que guarde en un archivo de texto (“primos.txt”) todos los números primos
+desde 2 hasta una constante MAXIMO (menor o igual que 100 millones) en un tiempo razonable
+(razonable es el tiempo que una persona tarda en tomar un café).
+Está permitido cualquier algoritmo salvo, por supuesto, el de copiar los números primos de otro archivo
+que ya los tiene cargados.
+Los números primos deben estar listados uno debajo del otro. Además de guardar los números primos
+en el archivo, la aplicación tiene que imprimir por pantalla: “cantidad de números primos guardados: “
+y “tiempo empleado: ”, con sus respectivos valores.
+El código, además de estar correctamente modularizado y contemplar las buenas prácticas de
+programación debe tener una constante MAXIMO antes del main.
+const unsigned int MAXIMO = 100000000;
+Para la escritura del archivo utilicen la librería fstream. Ejemplo de uso:
+#include <fstream>
+…
+ofstream archivo(“primos.txt”); // apertura de archivo para escritura, la o es por out (salida)
+archivo >> x >> endl; // guarda la variable x en el archivo y un fin de línea
+archivo.close(); // cierre al finalizar la escritura
+Para tomar los tiempos usen la librería ctime.
+#include <ctime>
+unsigned int ti = clock(); // debe ser la primera línea que se ejecute
+…
+unsigned int tf = clock(); // debe estar después del cierre del archivo
+double tiempo_total = (double(tf – ti)) / CLOCKS_PER_SEC; // calcula el tiempo en segundos*/
 #include <fstream>
 #include <iostream>
 #include <cmath>
+#include <ctime>
 
-class nro_natural{
-private:
-    unsigned int nro;
-    void vacio_legal(unsigned int numero);
-    bool caso_inicial(unsigned int numero);
-public:
-    nro_natural(unsigned int numero);
-    ~nro_natural();
-    bool es_primo(unsigned int numero);
-    void set_numero(unsigned int numero);
-    unsigned int get_numero();
-};
+const unsigned int MAXIMO = 100000000;
 
-void nro_natural::vacio_legal(unsigned int numero){
-/*habria que encontrar una manera de hacer la validacion una sola vez*/
-    if(numero < 1){
-        throw "Error! solo se aceptan numeros naturales";
-    }
-}
-
-/*funcion solo de prueba*/
-bool nro_natural::caso_inicial(unsigned int numero){
-    bool val_return = false;
-    if(numero == 2){
-        val_return = true;
-    }
-    return val_return;
-}
-
-nro_natural::nro_natural(unsigned int numero){
-    this->nro = numero;
-}
-
-nro_natural::~nro_natural(){}
-
-/*esto esta pensado para usarse de manera recursiva dentro de orta funcion.
-Por ende hacer mas de una vez la validacion de "vacio_legal es reduntante"*/
-bool nro_natural::es_primo(unsigned int numero){
-    bool primo = true;
-    //
-    vacio_legal(numero);
-    //
-    caso_inicial(numero);
-    //
-    for(unsigned int x = 2; x < sqrt(numero); x++){
+bool es_primo(unsigned int numero){
+    if(numero < 2) return false;
+    for(unsigned int x = 2; x <= sqrt(numero); x++){
         if(numero % x == 0){
-            primo = false;
-            break;
+            return false;
         }
     }
-    return primo;
-}
-
-void nro_natural::set_numero(unsigned int numero){
-    this->nro = numero;
-}
-
-unsigned int nro_natural::get_numero(){
-    return this->nro;   
+    return true;
 }
 
 int main(){
+    unsigned int ti = clock();
+    std::ofstream output_file("primos.txt");
+    unsigned int contador = 0;
 
+    for(unsigned int i = 2; i <= MAXIMO; i++){
+        if(es_primo(i)){
+            output_file << i << std::endl;
+            contador++;
+        }
+    }
+
+    output_file.close();
+
+    std::cout << "Cantidad de numeros primos guardados: " << contador << std::endl;
+
+    unsigned int tf = clock();
+    double tiempo_total = (double(tf - ti)) / CLOCKS_PER_SEC;
+    std::cout << "Tiempo empleado: " << tiempo_total << " segundos" << std::endl;
+
+    return 0;
 }
