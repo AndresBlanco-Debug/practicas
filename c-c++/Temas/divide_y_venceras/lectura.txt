@@ -1,0 +1,40 @@
+Recursividad.
+
+se llama recursividad a un proceso mediante el que una funcion
+se llama a si misma de forma repetida, hasta que se satisface
+alguna determinada condicion. El proceso se utiliza para computaciones 
+repetidas en las que cada accion se determina mediante un resultado anterior.
+
+Se deben satisfacer dos condiciones para que se pueda resolver
+un problema recursivamente:
+- El problema se debe de escribir de forma recursiva
+- La sentencia del programa debe incluir una condicion de fin
+
+una funcion recursiva tiene al menos una llamada a si misma con el 
+argumento modificado. EL proceso de llamadas recursivas siempre tiene 
+que acabar en al menos una llamada a la funcion que se resuelve de 
+manera directa, sin necesidad de invocar de nuevo la funcion.
+
+Aca el ejemplo mas popular de este metodo(C):
+
+#include <stdio.h>
+main()
+{
+    int numero;
+    long int factorial(int numero);
+    
+    printf("Introducir la cantidad entera a la que le queremos hallar el factorial");
+    scanf("%d",&n);
+
+    printf("Introducir la cantidad entera a la que le queremos hallar el factorial: ");
+}
+
+long int factorial(int n) /*Calcular el factorial*/
+{
+    if(n<=1){
+        return(1);
+    }
+    else{
+        return(n * factorial(n-1))
+    }
+}
