@@ -15,7 +15,7 @@ void producto_escalar(int x, int y, int z, int a, int b, int c){
     std::cout <<"El producto escalar es: " << escalar << std::endl;
 }
 
-int cofactor(int& a, int& b, int& c, int d){
+int cofactor(int a, int b, int c, int d){
     int coordenada = (a*d) - (b*c);
     return coordenada;
 }
