@@ -11,27 +11,29 @@ el programa tiene que cumplir con:
 - dado un barrio y una linea de colectivo imprimir paradas segun distancia
 */
 
+class Coordenada
+{
+private:
+    float x;
+    float y;
+public:
+    Coordenada(float, float);
+    float getX();
+    float getY();
+    ~Coordenada();
+};
+
+
+
 class Parada
 {
 private:
-    std::string calle;
-    //nombre de la calle
-    unsigned int altura;
-    //altura de la parada
-    unsigned int comuna;
-    //comuna donde esta la parada.
+    unsigned int linea;
+
 public:
-    Parada(std::string calle, unsigned int altura, unsigned int comuna);
-    //se crea la parada
-    std::string getCalle();
-    //regresa el nombre de la calle
-    unsigned int getAltura();
-    //regresa la altura
-    unsigned int getComuna();
-    //regresa la comuna
-    void getDireccion();
-    //regresa la direccion completa
+    Parada(/* args */);
     ~Parada();
 };
+
 
 #endif

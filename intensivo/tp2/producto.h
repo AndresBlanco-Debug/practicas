@@ -1,51 +1,73 @@
 #ifndef PRODUCTO_H
 #define PRODUCTO_H
-//#include <iostream>
 #include <string>
+/*
+nombre del producto
+precio del producto
+descuento
+stock del producto
+*/
 
 class Producto
 {
+    //elementos que componen al objeto
 private:
     std::string nombre_producto;
-    double precio;
+    float precio_unitario;
     bool descuento;
-    int cantidad_stock;
+    unsigned int stock;
 
 public:
-    Producto(std::string nombre_producto, double precio, bool descuento, int cantidad_stock);
+    //elementos que crean al objeto
+    Producto(std::string nombre, float precio, bool descuento, unsigned int cantidad);
+    //Se crea el producto
+    std::string obneter_nombre();
+    //Regresa el nombre del producto
+    float obtener_precio();
+    //Regresa el precio del producto
+    bool hay_descuento();
+    //Verifica si hay descuento
+    unsigned int cantidad_stock();
+    //Revisa la cantidad que hay en stock
+    void obtener_detalles();
+    //Regresa todos los datos del producto
     ~Producto();
-    std::string obtener_nombre();
-    double obtener_precio();
-    bool tiene_descuento();
-    int obtener_stock();
+    //Destructor de la clase
 };
 
-Producto::Producto(std::string nombre_producto, double precio, bool descuento, int cantidad_stock)
+Producto::Producto(std::string nombre, float precio, bool descuento, unsigned int cantidad)
 {
-    this->nombre_producto = nombre_producto;
-    this-> precio = precio;
-    this-> descuento = descuento;
-    this-> cantidad_stock = cantidad_stock;
+    this->nombre_producto = nombre;
+    this->precio_unitario = precio;
+    this->descuento = descuento;
+    this->stock = cantidad;
+}
+
+std::string Producto::obneter_nombre(){
+    return this->nombre_producto;
+}
+
+float Producto::obtener_precio(){
+    return this->precio_unitario;
+}
+
+bool Producto::hay_descuento(){
+    return this->descuento;
+}
+
+unsigned int Producto::cantidad_stock(){
+    return this->stock;
+}
+
+void Producto::obtener_detalles(){
+    obneter_nombre();
+    obtener_precio();
+    hay_descuento();
+    cantidad_stock();
 }
 
 Producto::~Producto()
 {
-}
-
-std::string Producto::obtener_nombre(){
-    return this->nombre_producto;
-}
-
-double Producto::obtener_precio(){
-    return this->precio;
-}
-
-bool Producto::tiene_descuento(){
-    return this->descuento;
-}
-
-int Producto::obtener_stock(){
-    return this->cantidad_stock;
 }
 
 #endif

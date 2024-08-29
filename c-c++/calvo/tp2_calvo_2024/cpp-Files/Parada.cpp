@@ -1,30 +1,59 @@
 #include <iostream>
-#include "./Headers/Parada.h"
+#include <fstream>
+#include <string>
 
-Parada::Parada(std::string calle, unsigned int altura, unsigned int comuna)
-{
-    this->calle = calle;
-    this->altura = altura;
-    this->comuna = comuna;
-}
 
-std::string Parada::getCalle()
+class Coordenada
 {
-    return (this->calle);
-}
+private:
+    float x;
+    float y;
+public:
+    //se crea la coordenada: 
+    Coordenada(float, float);
+    //getters:
+    float getX();
+    float getY();
+    //setters:
+    void setX(float);
+    void setY(float);
+    //obtener la coordenada:
+    Coordenada* obtenerCoordenada();
+    ~Coordenada();
+};
 
-unsigned int Parada::getAltura()
-{
-    return (this->altura);
-}
 
-unsigned int Parada::getComuna()
+class Parada
 {
-    return (this->comuna);
-}
+private:
+    unsigned int linea;
+    //linea de colectivo
+    Coordenada ubicacion;
+    //ubicacion de la parada (x,y)
+public:
+    //se crea la parada
+    Parada(unsigned int, Coordenada);
+    ~Parada();
+};
 
-void Parada::getDireccion()
+
+//funcion para leer el csv
+
+int main()
 {
-    std::cout << "La direccion de la parada es: (calle - altura - comuna) " << '\n';
-    std::cout << this->calle << ", " << this->altura << ", " << this->comuna << std::endl;
+    std::ifstream archivo("/home/jose/Desktop/MainRepo/practicas/c-c++/calvo/tp2_calvo_2024/paradas_de_colectivo.csv");
+    
+    //verificamos que el archivo abre bien:
+    if (!archivo.is_open())
+    {
+        std::cerr << "Error al abrir el archivo" << std::endl;
+        return 1;
+    }
+    std::string linea;
+    while (std::getline(archivo, linea))
+    {
+        std::cout << linea << std::endl;
+    }
+    archivo.close();
+    return 0;
 }
